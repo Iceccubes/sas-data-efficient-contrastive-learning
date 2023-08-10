@@ -95,6 +95,14 @@ class RandomSubsetDataset(BaseSubsetDataset):
         original_item = self.dataset[original_index]
         
         return original_item
+    def get_original_item(self, index):
+        # Get the index for the corresponding item in the original dataset
+        original_index = self.subset_indices[index]
+
+        # Get the item from the original dataset at the corresponding index
+        original_item = self.dataset[original_index]
+
+        return original_item
 
 """
 Custom Subset
@@ -216,7 +224,15 @@ class SASSubsetDataset(BaseSubsetDataset):
 
         self.initialization_complete()
 
+    def get_original_item(self, index):
+        # Get the index for the corresponding item in the original dataset
+        original_index = self.subset_indices[index]
 
+        # Get the item from the original dataset at the corresponding index
+        original_item = self.dataset[original_index]
+
+        return original_item
+    
     def approximate_augmentation_distance(self):
         self.proxy_model = self.proxy_model.to(self.device)
 
